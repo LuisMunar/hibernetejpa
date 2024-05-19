@@ -1,11 +1,20 @@
 package com.springboot.hibernatejpa;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.springboot.hibernatejpa.entities.Person;
+import com.springboot.hibernatejpa.repositories.PersonRepository;
+
 @SpringBootApplication
 public class HibernatejpaApplication implements CommandLineRunner {
+
+	@Autowired
+	private PersonRepository personRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(HibernatejpaApplication.class, args);
@@ -14,5 +23,8 @@ public class HibernatejpaApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Data persistent using Hibernate JPA.");
+
+		List<Person> persons = (List<Person>) personRepository.findAll();
+		persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 	}
 }
