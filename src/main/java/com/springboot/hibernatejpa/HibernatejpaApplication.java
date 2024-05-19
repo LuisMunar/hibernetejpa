@@ -24,7 +24,16 @@ public class HibernatejpaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		System.out.println("Data persistent using Hibernate JPA.");
 
-		List<Person> persons = (List<Person>) personRepository.findAll();
+		// List<Person> persons = (List<Person>) personRepository.findAll();
+		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+
+		// List<Person> persons = personRepository.findByProgrammingLanguage("Java");
+		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+
+		// List<Person> persons = personRepository.customFindByProgrammingLanguage("Javascript");
+		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+
+		List<Person> persons = personRepository.findByNameAndProgrammingLanguage("Bob", "JavaScript");
 		persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 	}
 }
