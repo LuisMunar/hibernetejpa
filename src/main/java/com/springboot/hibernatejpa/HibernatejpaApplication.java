@@ -1,6 +1,7 @@
 package com.springboot.hibernatejpa;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -36,7 +37,14 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		// List<Person> persons = personRepository.findByNameAndProgrammingLanguage("Bob", "JavaScript");
 		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 
-		List<Object> persons = personRepository.getPersonData();
-		persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+		// List<Object> persons = personRepository.getPersonData();
+		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+
+		Optional<Person> person = personRepository.findById((long) 1);
+		if (person.isPresent()) {
+			System.out.println("PERSON => " + person.get());
+		} else {
+			System.out.println("PERSON => NOT FOUND");
+		}
 	}
 }
