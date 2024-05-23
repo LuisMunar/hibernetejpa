@@ -33,7 +33,10 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		// List<Person> persons = personRepository.customFindByProgrammingLanguage("Javascript");
 		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 
-		List<Person> persons = personRepository.findByNameAndProgrammingLanguage("Bob", "JavaScript");
+		// List<Person> persons = personRepository.findByNameAndProgrammingLanguage("Bob", "JavaScript");
+		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
+
+		List<Object> persons = personRepository.getPersonData();
 		persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 	}
 }
