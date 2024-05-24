@@ -40,11 +40,38 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		// List<Object> persons = personRepository.getPersonData();
 		// persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 
-		Optional<Person> person = personRepository.findById((long) 1);
-		if (person.isPresent()) {
-			System.out.println("PERSON => " + person.get());
-		} else {
-			System.out.println("PERSON => NOT FOUND");
-		}
+		// Optional<Person> person = personRepository.findById((long) 1);
+		// if (person.isPresent()) {
+		// 	System.out.println("PERSON => " + person.get());
+		// } else {
+		// 	System.out.println("PERSON => NOT FOUND");
+		// }
+
+		// Optional<Person> person = personRepository.findOne((long) 1);
+		// if (person.isPresent()) {
+		// 	System.out.println("PERSON => " + person.get());
+		// } else {
+		// 	System.out.println("PERSON => NOT FOUND");
+		// }
+
+		// Optional<Person> person = personRepository.findOneByName("Bob");
+		// if (person.isPresent()) {
+		// 	System.out.println("PERSON => " + person.get());
+		// } else {
+		// 	System.out.println("PERSON => NOT FOUND");
+		// }
+
+		// List<Person> person = personRepository.findOneByLikeName("a");
+		// System.out.println("PERSON => " + person);
+
+		// Optional<Person> person = personRepository.findByName("Bob");
+		// if (person.isPresent()) {
+		// 	System.out.println("PERSON => " + person.get());
+		// } else {
+		// 	System.out.println("PERSON => NOT FOUND");
+		// }
+
+		List<Person> person = personRepository.findByNameContaining("a");
+		System.out.println("PERSON => " + person);
 	}
 }
