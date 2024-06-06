@@ -40,4 +40,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
   // custom
   @Query("SELECT p.name, p.lastname FROM Person p")
   List<Object> getPersonData();
+
+  // custom
+  @Query("SELECT CONCAT(p.name, ' ', p.lastname) FROM Person p WHERE p.id = :id")
+  String getPersonFullNameById(Long id);
 }
