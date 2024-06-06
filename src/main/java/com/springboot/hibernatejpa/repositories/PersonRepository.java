@@ -44,4 +44,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
   // custom
   @Query("SELECT CONCAT(p.name, ' ', p.lastname) FROM Person p WHERE p.id = :id")
   String getPersonFullNameById(Long id);
+
+  // custom query with different entity instance
+  @Query("SELECT new Person(p.name, p.lastname) FROM Person AS p")
+  List<Person> getPersonNameAndLastnameFromCustomInstance();
 }
