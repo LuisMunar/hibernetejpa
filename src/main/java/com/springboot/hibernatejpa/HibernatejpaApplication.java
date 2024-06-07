@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.springboot.hibernatejpa.dto.PersonDto;
 import com.springboot.hibernatejpa.entities.Person;
 import com.springboot.hibernatejpa.repositories.PersonRepository;
 
@@ -31,7 +32,14 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		// updatePerson();
 		// deletePerson();
 		// getPersonFullNameById();
-		getPersonNameAndLastnameFromCustomInstance();
+		// getPersonNameAndLastnameFromCustomInstance();
+		getPersonWithDto();
+	}
+
+	@Transactional(readOnly = true)
+	public void getPersonWithDto() {
+		List<PersonDto> persons = personRepository.getPersonWithDto();
+		persons.stream().forEach(person -> System.out.println("PERSON => " + person));
 	}
 
 	@Transactional(readOnly = true)

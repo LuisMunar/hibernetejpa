@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import com.springboot.hibernatejpa.dto.PersonDto;
 import com.springboot.hibernatejpa.entities.Person;
 
 public interface PersonRepository extends CrudRepository<Person, Long> {
@@ -48,4 +49,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
   // custom query with different entity instance
   @Query("SELECT new Person(p.name, p.lastname) FROM Person AS p")
   List<Person> getPersonNameAndLastnameFromCustomInstance();
+
+  // custom query to get users with dto intance
+  @Query("SELECT new com.springboot.hibernatejpa.dto.PersonDto(p.name, p.lastname) FROM Person AS p")
+  List<PersonDto> getPersonWithDto();
 }
