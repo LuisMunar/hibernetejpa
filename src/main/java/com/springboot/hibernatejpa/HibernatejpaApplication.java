@@ -33,7 +33,14 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		// deletePerson();
 		// getPersonFullNameById();
 		// getPersonNameAndLastnameFromCustomInstance();
-		getPersonWithDto();
+		// getPersonWithDto();
+		getNamesWithDistinct();
+	}
+
+	@Transactional(readOnly = true)
+	public void getNamesWithDistinct() {
+		List<String> names = personRepository.getNamesWithDistinct();
+		names.stream().forEach(name -> System.out.println("PERSON NAME => " + name));
 	}
 
 	@Transactional(readOnly = true)

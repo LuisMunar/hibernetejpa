@@ -53,4 +53,8 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
   // custom query to get users with dto intance
   @Query("SELECT new com.springboot.hibernatejpa.dto.PersonDto(p.name, p.lastname) FROM Person AS p")
   List<PersonDto> getPersonWithDto();
+
+  // custom query to get users name witgout repeated names
+  @Query("SELECT DISTINCT p.name FROM Person AS p")
+  List<String> getNamesWithDistinct();
 }
