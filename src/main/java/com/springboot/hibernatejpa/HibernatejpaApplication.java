@@ -29,12 +29,12 @@ public class HibernatejpaApplication implements CommandLineRunner {
 		System.out.println("Data persistent using Hibernate JPA.");
 		// createPerson();
 		// getPerson();
-		// updatePerson();
+		updatePerson();
 		// deletePerson();
 		// getPersonFullNameById();
 		// getPersonNameAndLastnameFromCustomInstance();
 		// getPersonWithDto();
-		getNamesWithDistinct();
+		// getNamesWithDistinct();
 	}
 
 	@Transactional(readOnly = true)
