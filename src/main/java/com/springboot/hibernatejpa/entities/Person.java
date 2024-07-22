@@ -1,14 +1,11 @@
 package com.springboot.hibernatejpa.entities;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,11 +21,8 @@ public class Person {
   @Column(name = "programming_language")
   private String programmingLanguage;
 
-  @Column(name = "created_at")
-  private LocalDateTime createdAt;
-
-  @Column(name = "updated_at")
-  private LocalDateTime updatedAt;
+  @Embedded
+  private Audit audit;
 
   public Person() {}
 
@@ -42,18 +36,6 @@ public class Person {
     this.name = name;
     this.lastname = lastname;
     this.programmingLanguage = programmingLanguage;
-  }
-
-  @PrePersist
-  public void prePersist() {
-    System.out.println("Before persisting data.");
-    this.createdAt = LocalDateTime.now();
-  }
-
-  @PreUpdate
-  public void preUpdate() {
-    System.out.println("Before updating data.");
-    this.updatedAt = LocalDateTime.now();
   }
 
   public Long getId() {
@@ -90,6 +72,6 @@ public class Person {
 
   @Override
   public String toString() {
-    return "Person => [id=" + id + ", name=" + name + ", lastname=" + lastname + ", programmingLanguage=" + programmingLanguage + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+    return "Person => [id=" + id + ", name=" + name + ", lastname=" + lastname + ", programmingLanguage=" + programmingLanguage + ", createdAt=" + audit.getCreatedAt() + ", updatedAt=" + audit.getUpdatedAt() + "]";
   }
 }
